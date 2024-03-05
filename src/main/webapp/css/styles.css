@@ -1,0 +1,216 @@
+:root {
+  --ion-color-primary: #3880ff;
+  --ion-color-light: #f4f5f8;
+}
+
+html {
+  --ion-font-family: "Ubuntu", sans-serif;
+}
+
+.main-content-container {
+  --overflow: scroll !important;
+}
+
+.ion-item-link {
+  text-decoration: none;
+}
+
+.main-menu {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-menu > ion-label {
+  padding: 0 0 10px 15px;
+  text-transform: capitalize;
+}
+
+.main-menu ion-icon {
+  margin-right: 15px;
+}
+
+.ion-item-link:hover ion-item {
+  --background: var(--ion-color-primary);
+  color: var(--ion-color-light);
+}
+
+.ion-item-link:hover ion-icon {
+  color: var(--ion-color-primary);
+}
+
+.ion-item-link:hover ion-label,
+.ion-item-link:hover ion-icon {
+  color: var(--ion-color-light);
+  --background: var(--ion-color-light);
+}
+
+.find-image {
+  max-height: 100px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.label-date {
+  width: 100% !important;
+  display: block;
+  top: -22px;
+  position: relative;
+  text-align: center;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-container ion-icon {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.btn-find {
+  text-align: center;
+}
+
+.template-card {
+  max-width: 800px;
+  margin: auto;
+  width: 100%;
+}
+
+.template-results {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.template-card ion-card-content {
+  padding: 0;
+}
+
+.flight-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.flight-details h3,
+.flight-details h2 {
+  width: fit-content;
+}
+
+.flight-details .airline {
+  display: flex;
+}
+
+.flight-details .flight-duration {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.flight-details .flight-duration h2,
+.flight-details .flight-duration h3 {
+  font-weight: bold;
+  color: #000;
+}
+
+.flight-details .flight-duration h2 {
+  font-size: 18px;
+}
+
+.flight-details .flight-duration h3 {
+  font-size: 16px;
+}
+
+.flight-details .flight-airports {
+  display: flex;
+}
+
+.flight-details .flight-airports .dash {
+  display: flex;
+  margin: 0 5px;
+}
+
+.flight-airline-details {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.flight-airline-details ion-badge {
+  margin-right: 20px;
+}
+
+.flight-airline-details ion-icon {
+  margin-right: 25px;
+  margin-left: 5px;
+  height: 20px;
+  width: 20px;
+}
+
+.flight-airline-details-logo {
+  height: 20px;
+  margin-right: 20px;
+}
+
+.flight-aircraft-details-logo {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.aircraft-details {
+  display: flex;
+}
+
+.price-details {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
+.airline-logo {
+  max-height: 100px;
+}
+
+.airline-logo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.aircraft-details {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+@media (min-width: 769px) {
+  .menu-content-open {
+    cursor: unset;
+    touch-action: unset;
+    pointer-events: unset;
+    overflow-y: unset;
+  }
+
+  #main-content {
+    transition: transform 0.3s ease;
+  }
+
+  ion-menu::part(backdrop) {
+    display: none;
+  }
+
+  ion-menu::part(container) {
+    box-shadow: unset;
+  }
+
+  ion-menu {
+    outline: none;
+    width: 304px;
+  }
+}
