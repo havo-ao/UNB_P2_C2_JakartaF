@@ -1,9 +1,19 @@
 package co.edu.unbosque.model.dtos;
 
+import java.util.ArrayList;
+
+import co.edu.unbosque.model.entities.Aircraft;
+import co.edu.unbosque.model.entities.Airline;
+import co.edu.unbosque.model.entities.Service;
+
 public class FlightDTO {
 
 	String id, number, origin, destiny, airlineFlightId, availableSeats, price, date, time, departureTime, landingTime,
 			servicesIds, aircraftId, airlineId;
+
+	ArrayList<Service> services;
+	Aircraft aircraft;
+	Airline airline;
 
 	public FlightDTO(String id, String number, String origin, String destiny, String airlineFlightId,
 			String availableSeats, String price, String date, String time, String departureTime, String landingTime,
@@ -23,6 +33,26 @@ public class FlightDTO {
 		this.servicesIds = servicesIds;
 		this.aircraftId = aircraftId;
 		this.airlineId = airlineId;
+	}
+
+	public FlightDTO(String id, String number, String origin, String destiny, String airlineFlightId,
+			String availableSeats, String price, String date, String time, String departureTime, String landingTime,
+			ArrayList<Service> services, Aircraft aircraft, Airline airline) {
+		super();
+		this.id = id;
+		this.number = number;
+		this.origin = origin;
+		this.destiny = destiny;
+		this.airlineFlightId = airlineFlightId;
+		this.availableSeats = availableSeats;
+		this.price = price;
+		this.date = date;
+		this.time = time;
+		this.departureTime = departureTime;
+		this.landingTime = landingTime;
+		this.services = services;
+		this.aircraft = aircraft;
+		this.airline = airline;
 	}
 
 	public FlightDTO() {
@@ -139,6 +169,30 @@ public class FlightDTO {
 
 	public void setAirlineId(String airlineId) {
 		this.airlineId = airlineId;
+	}
+
+	public ArrayList<Service> getServices() {
+		return services;
+	}
+
+	public void setServices(ArrayList<Service> services) {
+		this.services = services;
+	}
+
+	public Aircraft getAircraft() {
+		return aircraft;
+	}
+
+	public void setAircraft(Aircraft aircraft) {
+		this.aircraft = aircraft;
+	}
+
+	public Airline getAirline() {
+		return airline;
+	}
+
+	public void setAirline(Airline airline) {
+		this.airline = airline;
 	}
 
 }

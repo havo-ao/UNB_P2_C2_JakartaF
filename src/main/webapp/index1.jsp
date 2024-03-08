@@ -160,7 +160,7 @@
                                 </ion-card>
                             </ion-col>
                         </ion-row>
-                        <ion-row>
+                        <ion-row id="flight-results">
                             <ion-col>
                                 <ion-card class="template-card template-results">
                                     <ion-card-content>

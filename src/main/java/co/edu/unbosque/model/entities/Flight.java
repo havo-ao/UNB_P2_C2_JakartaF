@@ -6,15 +6,14 @@ import java.util.ArrayList;
 
 public class Flight {
 
-	String id, number, origin, destiny, airlineFlightId, departureTime, landingTime, aircraftId, airlineId;
+	String id, number, origin, destiny, airlineFlightId, departureTime, landingTime, aircraftId, airlineId, time;
 	int availableSeats;
 	double price;
 	LocalDate date;
-	LocalTime time;
 	ArrayList<Service> servicesIds;
 
 	public Flight(String id, String number, String origin, String destiny, String airlineFlightId, int availableSeats,
-			double price, LocalDate date, LocalTime time, String departureTime, String landingTime,
+			double price, LocalDate date, String time, String departureTime, String landingTime,
 			ArrayList<Service> servicesIds, String aircraftId, String airlineId) {
 		this.id = id;
 		this.number = number;
@@ -100,11 +99,11 @@ public class Flight {
 		this.date = date;
 	}
 
-	public LocalTime getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(LocalTime time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

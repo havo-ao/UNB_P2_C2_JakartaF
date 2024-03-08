@@ -2,12 +2,12 @@ package co.edu.unbosque.model.entities;
 
 public class Airline {
 
-	String company, logo;
+	String company, logo, id;
 
-	public Airline(String company, String logo) {
-		super();
+	public Airline(String id, String company, String logo) {
 		this.company = company;
 		this.logo = logo;
+		this.id = id;
 	}
 
 	public String getCompany() {
@@ -24,6 +24,14 @@ public class Airline {
 
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

@@ -1,12 +1,14 @@
 package co.edu.unbosque.model.dataMappers;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import co.edu.unbosque.model.dataSource.DataSource;
 import co.edu.unbosque.model.dtos.FlightDTO;
+import co.edu.unbosque.model.entities.Aircraft;
+import co.edu.unbosque.model.entities.Airline;
 import co.edu.unbosque.model.entities.Flight;
 import co.edu.unbosque.model.entities.Service;
 
@@ -16,7 +18,7 @@ public class FlightDataMapper {
 
 	}
 
-	public FlightDTO flightEntityToDTO(Flight flight) {
+	public static FlightDTO entityToDTO(Flight flight) {
 		FlightDTO flightDTO = new FlightDTO();
 
 		flightDTO.setId(flight.getId());
@@ -31,22 +33,18 @@ public class FlightDataMapper {
 		flightDTO.setDepartureTime(flight.getDepartureTime());
 		flightDTO.setLandingTime(flight.getLandingTime());
 
-		StringBuilder servicesStringBuilder = new StringBuilder();
-		for (Service service : flight.getServicesIds()) {
-			if (servicesStringBuilder.length() > 0) {
-				servicesStringBuilder.append(", ");
-			}
-			servicesStringBuilder.append(service.getId());
-		}
-		flightDTO.setServicesIds(servicesStringBuilder.toString());
+		//Devolver servicios
 
-		flightDTO.setAircraftId(flight.getAircraftId());
-		flightDTO.setAirlineId(flight.getAirlineId());
+		Aircraft aircraft = findAircraftById(flight.getAircraftId());
+		flightDTO.setAircraft(aircraft);
+
+		Airline airline = findAirlineById(flight.getAirlineId());
+		flightDTO.setAirline(airline);
 
 		return flightDTO;
 	}
 
-	public Flight flightDTOToEntity(FlightDTO flightDTO) {
+	public static Flight dtoToEntity(FlightDTO flightDTO) {
 		Flight flight = new Flight();
 
 		flight.setId(flightDTO.getId());
@@ -56,8 +54,15 @@ public class FlightDataMapper {
 		flight.setAirlineFlightId(flightDTO.getAirlineFlightId());
 		flight.setAvailableSeats(Integer.parseInt(flightDTO.getAvailableSeats()));
 		flight.setPrice(Double.parseDouble(flightDTO.getPrice()));
-		flight.setDate(LocalDate.parse(flightDTO.getDate()));
-		flight.setTime(LocalTime.parse(flightDTO.getTime()));
+
+		String[] parts = flightDTO.getDate().split("-");
+		int day = Integer.parseInt(parts[0]);
+		int month = Integer.parseInt(parts[1]);
+		int year = Integer.parseInt(parts[2]);
+		LocalDate date = LocalDate.of(year, month, day);
+		flight.setDate(date);
+
+		flight.setTime(flightDTO.getTime());
 		flight.setDepartureTime(flightDTO.getDepartureTime());
 		flight.setLandingTime(flightDTO.getLandingTime());
 
@@ -69,5 +74,23 @@ public class FlightDataMapper {
 		flight.setAirlineId(flightDTO.getAirlineId());
 
 		return flight;
+	}
+
+	private static Aircraft findAircraftById(String aircraftId) {
+		for (Aircraft aircraft : DataSource.aircrafts) {
+			if (aircraft.getId().equals(aircraftId)) {
+				return aircraft;
+			}
+		}
+		return null;
+	}
+
+	private static Airline findAirlineById(String airlineId) {
+		for (Airline airline : DataSource.airlines) {
+			if (airline.getId().equals(airlineId)) {
+				return airline;
+			}
+		}
+		return null;
 	}
 }
