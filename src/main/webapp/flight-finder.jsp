@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="co.edu.unbosque.model.entities.City" %>
+<%@ page import="co.edu.unbosque.model.dataSource.DataSource" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Jakarta Flights</title>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+
 </head>
 <body>
 <ion-row>
@@ -22,16 +30,12 @@
 				                <ion-icon name="location-outline"></ion-icon>
 				                <ion-select aria-label="Origin" label-placement="floating"
 				                    label="Origen" interface="popover" fill="outline"
-				                    id="originSelect">
-				                    <ion-select-option value="BOG">
-				                        Bogotá (BOG)
-				                    </ion-select-option>
-				                    <ion-select-option value="MDE">
-				                        Medellín (MDE)
-				                    </ion-select-option>
-				                    <ion-select-option value="DXB">
-				                        Dubái (DXB)
-				                    </ion-select-option>
+				                    id="originSelect" onchange="updateDestinyOptions()">
+				                    <% for (City city : DataSource.cities) { %>
+								        <ion-select-option value="<%= city.getId() %>">
+								            <%= city.getName() %> (<%= city.getId() %>)
+								        </ion-select-option>
+								    <% } %>
 				                </ion-select>
 				            </div>
 				        </ion-col>
@@ -54,15 +58,11 @@
 				                <ion-select aria-label="Destino" label-placement="floating"
 				                    label="Destino" interface="popover" fill="outline"
 				                    id="destinySelect">
-				                    <ion-select-option value="BOG">
-				                        Bogotá (BOG)
-				                    </ion-select-option>
-				                    <ion-select-option value="MDE">
-				                        Medellín (MDE)
-				                    </ion-select-option>
-				                    <ion-select-option value="DXB">
-				                        Dubái (DXB)
-				                    </ion-select-option>
+				                    <% for (City city : DataSource.cities) { %>
+								        <ion-select-option value="<%= city.getId() %>">
+								            <%= city.getName() %> (<%= city.getId() %>)
+								        </ion-select-option>
+								    <% } %>
 				                </ion-select>
 				            </div>
 				        </ion-col>
@@ -101,11 +101,27 @@
 				        var numberOfPassengers = document.getElementById('numberOfPassengers').value;
 				        
 				        var url = 'search-flight?origin=' + origin + '&destiny=' + destiny + '&date=' + formattedDate + '&numberOfPassengers=' + numberOfPassengers;
-				
-				        console.log("Url: ", url)
 				        
 				        window.location.href = url;
 				    }
+				    
+				    function updateDestinyOptions() {
+				        var originSelect = document.getElementById('originSelect');
+				        var destinySelect = document.getElementById('destinySelect');
+
+				        var originValue = originSelect.value;
+
+				        var destinyOptions = document.querySelectorAll('.destiny-option');
+				        destinyOptions.forEach(option => {
+				            option.classList.remove('hidden');
+				        });
+
+				        var selectedDestinyOption = document.querySelector('.' + originValue);
+				        if (selectedDestinyOption) {
+				            selectedDestinyOption.classList.add('hidden');
+				        }
+				    }
+				    
 				</script>
 				                
 

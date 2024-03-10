@@ -27,15 +27,12 @@ public class FlightSearchMapper {
 		entity.setDestiny(dto.getDestiny());
 		
 		String[] parts = dto.getDate().split("-");
-	    
 	    int day = Integer.parseInt(parts[0]);
 	    int month = Integer.parseInt(parts[1]);
 	    int year = Integer.parseInt(parts[2]);
-	    
 	    LocalDate date = LocalDate.of(year, month, day);
-	    
 	    entity.setDate(date);
-		
+
 		entity.setNumberOfPassengers(Integer.parseInt(dto.getNumberOfPassengers()));
 
 		return entity;

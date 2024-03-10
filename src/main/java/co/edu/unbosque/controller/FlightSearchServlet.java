@@ -35,7 +35,6 @@ public class FlightSearchServlet extends HttpServlet {
 	    System.out.println("Fecha: " + searchDTO.getDate());
 	    System.out.println("Número de pasajeros: " + searchDTO.getNumberOfPassengers());
 
-
 		ArrayList<FlightDTO> matchingFlightsDTO = flightController.findFlights(searchDTO);
 
 		request.setAttribute("matchingFlightsDTO", matchingFlightsDTO);

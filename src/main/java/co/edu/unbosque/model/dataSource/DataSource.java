@@ -23,94 +23,100 @@ public class DataSource {
 
 	public static void addDefaultFlights() {
 		LocalDate today = LocalDate.now();
-		LocalDate tomorrow = today.plusDays(1);
+		LocalDate threeDaysLater = today.plusDays(3);
+		LocalDate fourDaysLater = today.plusDays(4);
 
-		// Vuelo de Bogotá a San Andrés
-		Flight bogToSanAndres = new Flight(UUID.randomUUID().toString(), "FL101", "BOG", "ADZ", "SAN101", 180, 250000,
-				today, "3:30", "09:00", "11:00", getRandomServices(), getRandomAircraft().getId(),
-				getRandomAirline().getId());
-		flights.add(bogToSanAndres);
+		String[][] flightInfo = {
+				{ "BOG", "ADZ", "2h 30m", "09:00", "11:30", "250000", "180", threeDaysLater.toString() },
+				{ "BOG", "MDE", "1h 10m", "09:00", "10:10", "250000", "180", threeDaysLater.toString() },
+				{ "BOG", "GIG", "6h 20m", "13:45", "20:05", "300000", "200", threeDaysLater.toString() },
+				{ "MDE", "DXB", "14h 15m", "10:30", "00:45", "700000", "220", threeDaysLater.toString() },
+				{ "MDE", "EZE", "6h 45m", "14:00", "20:45", "600000", "190", threeDaysLater.toString() },
+				{ "MDE", "GIG", "6h 30m", "13:20", "19:50", "300000", "180", threeDaysLater.toString() },
+				{ "EZE", "LHR", "12h 20m", "16:20", "04:40", "900000", "230", fourDaysLater.toString() },
+				{ "EZE", "MAD", "10h 30m", "18:00", "04:30", "750000", "210", fourDaysLater.toString() },
+				{ "EZE", "LON", "9h 15m", "20:00", "05:15", "1000000", "240", fourDaysLater.toString() },
+				{ "GIG", "IST", "12h 15m", "15:15", "03:30", "800000", "200", fourDaysLater.toString() },
+				{ "GIG", "MAD", "9h 40m", "16:30", "02:10", "700000", "190", fourDaysLater.toString() },
+				{ "GIG", "LON", "11h 20m", "17:00", "04:20", "750000", "210", fourDaysLater.toString() } };
 
-		// Vuelo de Medellín a Dubái
-		Flight medToDubai = new Flight(UUID.randomUUID().toString(), "FL202", "MDE", "DXB", "DUB202", 220, 700000,
-				today, "8:45", "14:00", "20:45", getRandomServices(), getRandomAircraft().getId(),
-				getRandomAirline().getId());
-		flights.add(medToDubai);
+		int flightIndex = 1;
+		for (String[] flight : flightInfo) {
+			for (int i = 0; i < 5; i++) {
+				String origin = flight[0];
+				String destination = flight[1];
+				String duration = flight[2];
+				String departureTime = flight[3];
+				String arrivalTime = flight[4];
+				double price = Double.parseDouble(flight[5]);
+				int availableSeats = Integer.parseInt(flight[6]);
+				LocalDate departureDate = LocalDate.parse(flight[7]);
 
-		// Vuelo de Buenos Aires a Londres
-		Flight buenosAiresToLondon = new Flight(UUID.randomUUID().toString(), "FL303", "EZE", "LHR", "BAW303", 230,
-				900000, tomorrow, "16:20", "22:30", "06:50", getRandomServices(), getRandomAircraft().getId(),
-				getRandomAirline().getId());
-		flights.add(buenosAiresToLondon);
+				Flight newFlight = new Flight(UUID.randomUUID().toString(), "V" + (flightIndex * 4 + 400), origin,
+						destination, "" + (flightIndex * 4 + 400), availableSeats, price, departureDate, duration,
+						departureTime, arrivalTime, getRandomServices(), getRandomAircraft().getId(),
+						getRandomAirline().getId());
 
-		// Vuelo de Río de Janeiro a Estambul
-		Flight rioToIstanbul = new Flight(UUID.randomUUID().toString(), "FL404", "GIG", "IST", "TK404", 200, 800000,
-				tomorrow, "12:15", "18:30", "01:45", getRandomServices(), getRandomAircraft().getId(),
-				getRandomAirline().getId());
-		flights.add(rioToIstanbul);
+				flights.add(newFlight);
+				flightIndex++;
+			}
+		}
 	}
 
 	public static void addDefaultCities() {
-		City bogota = new City("BOG", "Bogotá", "Aeropuerto Internacional El Dorado");
-		cities.add(bogota);
-		City sanAndres = new City("ADZ", "San Andrés", "Aeropuerto Internacional Gustavo Rojas Pinilla");
-		cities.add(sanAndres);
-		City medellin = new City("MDE", "Medellín", "Aeropuerto Internacional José María Córdova");
-		cities.add(medellin);
-		City dubai = new City("DXB", "Dubái", "Aeropuerto Internacional de Dubái");
-		cities.add(dubai);
-		City estambul = new City("IST", "Estambul", "Aeropuerto Internacional de Estambul");
-		cities.add(estambul);
+		String[][] cityInfo = { { "BOG", "Bogotá", "Aeropuerto Internacional El Dorado" },
+				{ "ADZ", "San Andrés", "Aeropuerto Internacional Gustavo Rojas Pinilla" },
+				{ "MDE", "Medellín", "Aeropuerto Internacional José María Córdova" },
+				{ "DXB", "Dubái", "Aeropuerto Internacional de Dubái" },
+				{ "IST", "Estambul", "Aeropuerto Internacional de Estambul" },
+				{ "GIG", "Río de Janeiro", "Rio de Janeiro-Galeão International Airport" },
+				{ "JFK", "Nueva York", "John F. Kennedy International Airport" },
+				{ "MAD", "Madrid", "Adolfo Suárez Madrid-Barajas Airport" },
+				{ "EZE", "Buenos Aires", "Ministro Pistarini International Airport" },
+				{ "LHR", "Londres", "Heathrow Airport" } };
 
+		for (String[] city : cityInfo) {
+			City newCity = new City(city[0], city[1], city[2]);
+			cities.add(newCity);
+		}
 	}
 
 	public static void addDefaultAirlines() {
-		Airline turkishAirlines = new Airline("TURKISH", "Turkish Airlines", "turkish-airlines.png");
-		airlines.add(turkishAirlines);
+		String[][] airlineInfo = { { "TURKISH", "Turkish Airlines", "turkish-airlines.png" },
+				{ "DELTA", "Delta", "delta.png" }, { "AVIANCA", "Avianca", "avianca.png" },
+				{ "EMIRATES", "Emirates", "emirates.png" }, { "AA", "American Airlines", "american-airlines.png" } };
 
-		Airline delta = new Airline("DELTA", "Delta", "delta.png");
-		airlines.add(delta);
-
-		Airline avianca = new Airline("AVIANCA", "Avianca", "avianca.png");
-		airlines.add(avianca);
-
-		Airline emirates = new Airline("EMIRATES", "Emirates", "emirates.png");
-		airlines.add(emirates);
-
-		Airline iberia = new Airline("IBERIA", "Iberia", "iberia.png");
-		airlines.add(iberia);
+		for (String[] airline : airlineInfo) {
+			Airline newAirline = new Airline(airline[0], airline[1], airline[2]);
+			airlines.add(newAirline);
+		}
 	}
 
 	public static void addDefaultAircrafts() {
-		// Boeing
-		Aircraft boeing1 = new Aircraft(UUID.randomUUID().toString(), "Boeing", "747", "boeing_logo.png");
-		aircrafts.add(boeing1);
-		Aircraft boeing2 = new Aircraft(UUID.randomUUID().toString(), "Boeing", "787", "boeing_logo.png");
-		aircrafts.add(boeing2);
-		Aircraft boeing3 = new Aircraft(UUID.randomUUID().toString(), "Boeing", "737", "boeing_logo.png");
-		aircrafts.add(boeing3);
+		String[][] aircraftInfo = {
+				// Boeing
+				{ "Boeing", "747 (Jet de fuselaje ancho)", "boeing_logo.png" },
+				{ "Boeing", "787-9 Dreamliner (Jet de fuselaje ancho)", "boeing_logo.png" },
+				{ "Boeing", "737 (Jet de fuselaje angosto)", "boeing_logo.png" },
+				// Airbus
+				{ "Airbus", "A380 (Jet de fuselaje ancho)", "airbus_logo.png" },
+				{ "Airbus", "A320 (Jet de fuselaje angosto)", "airbus_logo.png" },
+				{ "Airbus", "A350 (Jet de fuselaje ancho)", "airbus_logo.png" } };
 
-		// Airbus
-		Aircraft airbus1 = new Aircraft(UUID.randomUUID().toString(), "Airbus", "A380", "airbus_logo.png");
-		aircrafts.add(airbus1);
-		Aircraft airbus2 = new Aircraft(UUID.randomUUID().toString(), "Airbus", "A320", "airbus_logo.png");
-		aircrafts.add(airbus2);
-		Aircraft airbus3 = new Aircraft(UUID.randomUUID().toString(), "Airbus", "A350", "airbus_logo.png");
-		aircrafts.add(airbus3);
-
+		for (String[] aircraft : aircraftInfo) {
+			Aircraft newAircraft = new Aircraft(UUID.randomUUID().toString(), aircraft[0], aircraft[1], aircraft[2]);
+			aircrafts.add(newAircraft);
+		}
 	}
 
 	public static void addDefaultServices() {
-		Service servicio1 = new Service(UUID.randomUUID().toString(), "WiFi");
-		services.add(servicio1);
-		Service servicio2 = new Service(UUID.randomUUID().toString(), "Entretenimiento a bordo");
-		services.add(servicio2);
-		Service servicio3 = new Service(UUID.randomUUID().toString(), "Comida a bordo");
-		services.add(servicio3);
-		Service servicio4 = new Service(UUID.randomUUID().toString(), "Asientos reclinables");
-		services.add(servicio4);
-		Service servicio5 = new Service(UUID.randomUUID().toString(), "Kit de amenidades");
-		services.add(servicio5);
+		String[] serviceNames = { "WiFi", "Entretenimiento a bordo", "Comida a bordo", "Asientos reclinables",
+				"Kit de amenidades" };
+
+		for (String serviceName : serviceNames) {
+			Service newService = new Service(UUID.randomUUID().toString(), serviceName);
+			services.add(newService);
+		}
 	}
 
 	private static Service getRandomService() {

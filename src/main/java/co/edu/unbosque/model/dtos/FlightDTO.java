@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import co.edu.unbosque.model.entities.Aircraft;
 import co.edu.unbosque.model.entities.Airline;
+import co.edu.unbosque.model.entities.City;
 import co.edu.unbosque.model.entities.Service;
 
 public class FlightDTO {
@@ -14,6 +15,7 @@ public class FlightDTO {
 	ArrayList<Service> services;
 	Aircraft aircraft;
 	Airline airline;
+	City originCity, destinyCity;
 
 	public FlightDTO(String id, String number, String origin, String destiny, String airlineFlightId,
 			String availableSeats, String price, String date, String time, String departureTime, String landingTime,
@@ -35,14 +37,14 @@ public class FlightDTO {
 		this.airlineId = airlineId;
 	}
 
-	public FlightDTO(String id, String number, String origin, String destiny, String airlineFlightId,
+	public FlightDTO(String id, String number, City originCity, City destinyCity, String airlineFlightId,
 			String availableSeats, String price, String date, String time, String departureTime, String landingTime,
 			ArrayList<Service> services, Aircraft aircraft, Airline airline) {
 		super();
 		this.id = id;
 		this.number = number;
-		this.origin = origin;
-		this.destiny = destiny;
+		this.originCity = originCity;
+		this.destinyCity = destinyCity;
 		this.airlineFlightId = airlineFlightId;
 		this.availableSeats = availableSeats;
 		this.price = price;
@@ -193,6 +195,22 @@ public class FlightDTO {
 
 	public void setAirline(Airline airline) {
 		this.airline = airline;
+	}
+
+	public City getOriginCity() {
+		return originCity;
+	}
+
+	public void setOriginCity(City originCity) {
+		this.originCity = originCity;
+	}
+
+	public City getDestinyCity() {
+		return destinyCity;
+	}
+
+	public void setDestinyCity(City destinyCity) {
+		this.destinyCity = destinyCity;
 	}
 
 }

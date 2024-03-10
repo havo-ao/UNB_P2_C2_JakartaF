@@ -12,7 +12,7 @@ public class BookingDataMapper {
         Customer customer = booking.getCustomer();
         Flight flight = booking.getFlight();
         
-        FlightDTO flightDTO = FlightDataMapper.flightEntityToDTO(flight); // Asumiendo que tienes este método
+        FlightDTO flightDTO = FlightDataMapper.entityToDTO(flight); // Asumiendo que tienes este método
         
         String id = booking.getId().toString();
         String firstName = customer.getFirstName();

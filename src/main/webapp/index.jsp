@@ -34,7 +34,7 @@
                 <ion-content>
                     <ion-list lines="full" class="main-menu">
                         <ion-label color="medium">Usuarios</ion-label>
-                        <a href="index.jsp?page=users" class="ion-item-link">
+                        <a href="index.jsp" class="ion-item-link">
                             <ion-item>
                                 <ion-icon name="search-outline"></ion-icon>
                                 <ion-label>Buscar Vuelos</ion-label>

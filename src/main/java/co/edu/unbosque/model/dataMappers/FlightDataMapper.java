@@ -9,6 +9,7 @@ import co.edu.unbosque.model.dataSource.DataSource;
 import co.edu.unbosque.model.dtos.FlightDTO;
 import co.edu.unbosque.model.entities.Aircraft;
 import co.edu.unbosque.model.entities.Airline;
+import co.edu.unbosque.model.entities.City;
 import co.edu.unbosque.model.entities.Flight;
 import co.edu.unbosque.model.entities.Service;
 
@@ -23,8 +24,8 @@ public class FlightDataMapper {
 
 		flightDTO.setId(flight.getId());
 		flightDTO.setNumber(flight.getNumber());
-		flightDTO.setOrigin(flight.getOrigin());
-		flightDTO.setDestiny(flight.getDestiny());
+		flightDTO.setOriginCity(findCityById(flight.getOrigin()));
+		flightDTO.setDestinyCity(findCityById(flight.getDestiny()));
 		flightDTO.setAirlineFlightId(flight.getAirlineFlightId());
 		flightDTO.setAvailableSeats(String.valueOf(flight.getAvailableSeats()));
 		flightDTO.setPrice(String.valueOf(flight.getPrice()));
@@ -33,7 +34,13 @@ public class FlightDataMapper {
 		flightDTO.setDepartureTime(flight.getDepartureTime());
 		flightDTO.setLandingTime(flight.getLandingTime());
 
-		//Devolver servicios
+		// Devolver servicios
+
+		// Nota: Somos conscientes que poner la entidad directamente no es la mejor
+		// práctica.
+		// Dada la estructura, tendríamos que haber creado dto y dao para
+		// el resto de las entidades, pero queríamos seguir manteniendo el guardado como
+		// id de cada entidad.
 
 		Aircraft aircraft = findAircraftById(flight.getAircraftId());
 		flightDTO.setAircraft(aircraft);
@@ -89,6 +96,15 @@ public class FlightDataMapper {
 		for (Airline airline : DataSource.airlines) {
 			if (airline.getId().equals(airlineId)) {
 				return airline;
+			}
+		}
+		return null;
+	}
+
+	private static City findCityById(String cityId) {
+		for (City city : DataSource.cities) {
+			if (city.getId().equals(cityId)) {
+				return city;
 			}
 		}
 		return null;
