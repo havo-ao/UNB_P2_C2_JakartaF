@@ -29,15 +29,16 @@ public class FlightSearchServlet extends HttpServlet {
 		searchDTO.setDestiny(request.getParameter("destiny"));
 		searchDTO.setDate(request.getParameter("date"));
 		searchDTO.setNumberOfPassengers(request.getParameter("numberOfPassengers"));
-		
+
 		System.out.println("Origen: " + searchDTO.getOrigin());
-	    System.out.println("Destino: " + searchDTO.getDestiny());
-	    System.out.println("Fecha: " + searchDTO.getDate());
-	    System.out.println("Número de pasajeros: " + searchDTO.getNumberOfPassengers());
+		System.out.println("Destino: " + searchDTO.getDestiny());
+		System.out.println("Fecha: " + searchDTO.getDate());
+		System.out.println("Número de pasajeros: " + searchDTO.getNumberOfPassengers());
 
 		ArrayList<FlightDTO> matchingFlightsDTO = flightController.findFlights(searchDTO);
 
 		request.setAttribute("matchingFlightsDTO", matchingFlightsDTO);
+		request.setAttribute("seats", searchDTO.getNumberOfPassengers());
 
 		request.getRequestDispatcher("/index.jsp?page=results").forward(request, response);
 	}

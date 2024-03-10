@@ -1,7 +1,6 @@
 package co.edu.unbosque.model.daos;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import co.edu.unbosque.model.dataSource.DataSource;
 import co.edu.unbosque.model.entities.Booking;
@@ -13,7 +12,7 @@ public class BookingDAOImpl implements BookingDAO {
     }
 
     @Override
-    public Booking findById(UUID id) {
+    public Booking findById(String id) {
         return DataSource.bookings.stream()
                 .filter(booking -> booking.getId().equals(id))
                 .findFirst()
@@ -34,7 +33,7 @@ public class BookingDAOImpl implements BookingDAO {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(String id) {
         DataSource.bookings.removeIf(booking -> booking.getId().equals(id));
     }
 }

@@ -5,13 +5,33 @@
     version="4.0">
     
     <servlet>
+        <servlet-name>FlightsServlet</servlet-name>
+        <servlet-class>co.edu.unbosque.controller.FlightServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
         <servlet-name>FlightSearchServlet</servlet-name>
         <servlet-class>co.edu.unbosque.controller.FlightSearchServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>BookingServlet</servlet-name>
+        <servlet-class>co.edu.unbosque.controller.BookingServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>FlightSearchServlet</servlet-name>
         <url-pattern>/search-flight</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>BookingServlet</servlet-name>
+        <url-pattern>/booking</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>FlightsServlet</servlet-name>
+        <url-pattern>/flights</url-pattern>
     </servlet-mapping>
 
 </web-app>

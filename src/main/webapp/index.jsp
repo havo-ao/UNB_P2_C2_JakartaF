@@ -56,7 +56,7 @@
                                 <ion-label>Crear Vuelo</ion-label>
                             </ion-item>
                         </a>
-                        <a href="index.jsp?page=query-flights" class="ion-item-link">
+                        <a href="flights" class="ion-item-link">
                             <ion-item>
                                 <ion-icon name="document-text-outline"></ion-icon>
                                 <ion-label>Consultar Vuelos</ion-label>
@@ -87,6 +87,18 @@
 		                    	if (pageParam.equals("results")) {
 		                            %>
 		                            <%@include file="flight-results.jsp" %>
+		                            <%
+		                        } else if (pageParam.equals("query-ticket")) {
+		                            %>
+		                            <%@include file="query-ticket.jsp" %>
+		                            <%
+		                        }  else if (pageParam.equals("flights")) {
+		                            %>
+		                            <%@include file="flights.jsp" %>
+		                            <%
+		                        } else if (pageParam.equals("booking")) {
+		                            %>
+		                            <%@include file="booking.jsp" %>
 		                            <%
 		                        }
 		                    } else {

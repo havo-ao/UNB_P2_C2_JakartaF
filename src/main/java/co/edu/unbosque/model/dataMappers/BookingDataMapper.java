@@ -8,23 +8,37 @@ import co.edu.unbosque.model.entities.Flight;
 
 public class BookingDataMapper {
 
-	public BookingDTO entityToDTO(Booking booking) {
-        Customer customer = booking.getCustomer();
-        Flight flight = booking.getFlight();
-        
-        FlightDTO flightDTO = FlightDataMapper.entityToDTO(flight); // Asumiendo que tienes este método
-        
-        String id = booking.getId().toString();
-        String firstName = customer.getFirstName();
-        String lastName = customer.getLastName();
-        String email = customer.getEmail();
-        String seats = String.valueOf(booking.getSeats());
-        String totalPrice = String.format("%.2f", booking.getTotalPrice());
-        String isConfirmed = String.valueOf(booking.isConfirmed());
-        String isCanceled = String.valueOf(booking.isCanceled());
+	public static BookingDTO entityToDTO(Booking booking, Flight flight) {
+		Customer customer = booking.getCustomer();
+		BookingDTO bookingDTO = new BookingDTO();
+		
+		bookingDTO.setId(booking.getId());
+		bookingDTO.setFirstName(customer.getFirstName());
+		bookingDTO.setLastName(customer.getLastName());
+		bookingDTO.setEmail(customer.getEmail());
+		bookingDTO.setSeats(String.valueOf(booking.getSeats()));
+		bookingDTO.setTotalPrice(String.format("%.2f", booking.getTotalPrice()));
+		bookingDTO.setIsCanceled(String.valueOf(booking.isCanceled()));
+		bookingDTO.setFlightDTO(FlightDataMapper.entityToDTO(flight));
 
-        return new BookingDTO(id, firstName, lastName, email, seats, totalPrice, isConfirmed, isCanceled, flightDTO);
-    }
-	
-	
+		return bookingDTO;
+	}
+
+	public static Booking dtoToEntity(BookingDTO bookingDTO) {
+		Customer customer = new Customer();
+	    customer.setFirstName(bookingDTO.getFirstName());
+	    customer.setLastName(bookingDTO.getLastName());
+	    customer.setEmail(bookingDTO.getEmail());
+
+	    Booking newBooking = new Booking();
+	    newBooking.setId(bookingDTO.getId());
+	    newBooking.setCustomer(customer);
+	    newBooking.setSeats(Integer.parseInt(bookingDTO.getSeats()));
+	    newBooking.setTotalPrice(Double.parseDouble(bookingDTO.getTotalPrice()));
+	    newBooking.setFlightId(bookingDTO.getFlightId());
+
+	    return newBooking;
+
+	}
+
 }

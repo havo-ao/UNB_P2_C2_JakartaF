@@ -83,51 +83,40 @@
 				    </ion-row>
 				</ion-grid>
 				
-				<script>
-				    function buscarVuelos() {
-				        var origin = document.getElementById('originSelect').value;
-				        var destiny = document.getElementById('destinySelect').value;
-				        var rawDate = document.getElementById('datetime').value;
-				        
-				        if (!rawDate) {
-				            alert("Por favor seleccione la fecha");
-				            return;
-				        }
-				        
-				        var date = rawDate.split('T')[0];
-				        var parts = date.split('-');
-				        var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0];
-
-				        var numberOfPassengers = document.getElementById('numberOfPassengers').value;
-				        
-				        var url = 'search-flight?origin=' + origin + '&destiny=' + destiny + '&date=' + formattedDate + '&numberOfPassengers=' + numberOfPassengers;
-				        
-				        window.location.href = url;
-				    }
-				    
-				    function updateDestinyOptions() {
-				        var originSelect = document.getElementById('originSelect');
-				        var destinySelect = document.getElementById('destinySelect');
-
-				        var originValue = originSelect.value;
-
-				        var destinyOptions = document.querySelectorAll('.destiny-option');
-				        destinyOptions.forEach(option => {
-				            option.classList.remove('hidden');
-				        });
-
-				        var selectedDestinyOption = document.querySelector('.' + originValue);
-				        if (selectedDestinyOption) {
-				            selectedDestinyOption.classList.add('hidden');
-				        }
-				    }
-				    
-				</script>
+				
 				                
 
             </ion-card-content>
         </ion-card>
     </ion-col>
 </ion-row>
+
+<script>
+   function buscarVuelos() {
+       var origin = document.getElementById('originSelect').value;
+       var destiny = document.getElementById('destinySelect').value;
+       var rawDate = document.getElementById('datetime').value;
+       
+       if (!rawDate) {
+           alert("Por favor seleccione la fecha.");
+           return;
+       }
+       
+       var date = rawDate.split('T')[0];
+       var parts = date.split('-');
+       var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0];
+
+       var numberOfPassengers = document.getElementById('numberOfPassengers').value;
+       
+       if (numberOfPassengers < 1 ) {
+           alert("Por favor ingrese una cantidad de pasajeros válida.");
+           return;
+       }
+       
+       var url = 'search-flight?origin=' + origin + '&destiny=' + destiny + '&date=' + formattedDate + '&numberOfPassengers=' + numberOfPassengers;
+       
+       window.location.href = url;
+   }
+</script>
 </body>
 </html>

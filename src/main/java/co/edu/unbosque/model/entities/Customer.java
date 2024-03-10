@@ -1,7 +1,7 @@
 package co.edu.unbosque.model.entities;
 
 public class Customer {
-	
+
 	String firstName, lastName, email;
 
 	public Customer(String firstName, String lastName, String email) {
@@ -9,6 +9,10 @@ public class Customer {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+	}
+
+	public Customer() {
+
 	}
 
 	public String getFirstName() {
@@ -34,7 +38,5 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	
 
 }

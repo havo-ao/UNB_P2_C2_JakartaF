@@ -23,5 +23,17 @@ public class FlightController {
 
 		return matchingFlightsDTO;
 	}
+	
+	public ArrayList<FlightDTO> getAllFlights() {
+		ArrayList<FlightDTO> FlightsDTO = new ArrayList<>();
+		
+		ArrayList<Flight> Flights = flightDAO.findAll();
+
+	    for (Flight flight : Flights) {
+	        FlightsDTO.add(FlightDataMapper.entityToDTO(flight));
+	    }
+
+		return FlightsDTO;
+	}
 
 }

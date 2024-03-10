@@ -1,9 +1,20 @@
 package co.edu.unbosque.model.dtos;
 
 public class BookingDTO {
-	String id, firstName, lastName, email, seats, totalPrice, isConfirmed, isCanceled;
+	String id, firstName, lastName, email, seats, totalPrice, isCanceled, flightId;
 	FlightDTO flightDTO;
 
+	public BookingDTO(String id, String firstName, String lastName, String email, String seats, String totalPrice, String isCanceled, String flightId) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.seats = seats;
+		this.totalPrice = totalPrice;
+		this.isCanceled = isCanceled;
+		this.flightId = flightId;
+	}
+	
 	public BookingDTO(String id, String firstName, String lastName, String email, String seats, String totalPrice,
 			String isConfirmed, String isCanceled, FlightDTO flightDTO) {
 		this.id = id;
@@ -12,9 +23,12 @@ public class BookingDTO {
 		this.email = email;
 		this.seats = seats;
 		this.totalPrice = totalPrice;
-		this.isConfirmed = isConfirmed;
 		this.isCanceled = isCanceled;
 		this.flightDTO = flightDTO;
+	}
+	
+	public BookingDTO() {
+		
 	}
 
 	public String getId() {
@@ -65,14 +79,6 @@ public class BookingDTO {
 		this.totalPrice = totalPrice;
 	}
 
-	public String getIsConfirmed() {
-		return isConfirmed;
-	}
-
-	public void setIsConfirmed(String isConfirmed) {
-		this.isConfirmed = isConfirmed;
-	}
-
 	public String getIsCanceled() {
 		return isCanceled;
 	}
@@ -81,12 +87,20 @@ public class BookingDTO {
 		this.isCanceled = isCanceled;
 	}
 
+	public String getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(String flightId) {
+		this.flightId = flightId;
+	}
+
 	public FlightDTO getFlightDTO() {
 		return flightDTO;
 	}
 
 	public void setFlightDTO(FlightDTO flightDTO) {
 		this.flightDTO = flightDTO;
-	}
+	}	
 
 }
