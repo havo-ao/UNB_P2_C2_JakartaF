@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"co.edu.unbosque.controller"},{"l":"co.edu.unbosque.model.daos"},{"l":"co.edu.unbosque.model.dataMappers"},{"l":"co.edu.unbosque.model.dataSource"},{"l":"co.edu.unbosque.model.dtos"},{"l":"co.edu.unbosque.model.entities"},{"l":"co.edu.unbosque.model.functions"}];updateSearchResults();

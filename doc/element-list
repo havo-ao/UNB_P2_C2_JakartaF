@@ -1,0 +1,7 @@
+co.edu.unbosque.controller
+co.edu.unbosque.model.daos
+co.edu.unbosque.model.dataMappers
+co.edu.unbosque.model.dataSource
+co.edu.unbosque.model.dtos
+co.edu.unbosque.model.entities
+co.edu.unbosque.model.functions

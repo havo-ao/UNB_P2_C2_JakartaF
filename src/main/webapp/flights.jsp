@@ -1,48 +1,72 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="co.edu.unbosque.model.dtos.FlightDTO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import="co.edu.unbosque.model.dtos.FlightDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Vuelos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.3/ionicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/@ionic/core/5.6.7/css/ionic.bundle.css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+        table {
+            border-collapse: collapse;
+            margin: 20px;
+            width: 95%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-        <ion-header>
-            <ion-toolbar color="primary">
+<ion-row>
+    <ion-col>
+        <ion-card class="template-card">
+            <img class="find-image" alt="Silhouette of mountains" src="./img/wing.png" />
+            <ion-card-header>
+                <ion-card-title>Buscar Tiquete</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
                 <ion-title>Lista de Vuelos</ion-title>
-            </ion-toolbar>
-        </ion-header>
-        <ion-content>
-            <ion-table>
-                <ion-thead>
-                    <ion-row>
-                        <ion-th>Origen</ion-th>
-                        <ion-th>Destino</ion-th>
-                        <ion-th>Aerolínea</ion-th>
-                        <ion-th>Hora de Salida</ion-th>
-                        <ion-th>Hora de Llegada</ion-th>
-                        <ion-th>Precio</ion-th>
-                    </ion-row>
-                </ion-thead>
-                <ion-tbody>
-                    <% for (FlightDTO flight : (ArrayList<FlightDTO>) request.getAttribute("flights")) { %>
-                    <ion-row>
-                        <ion-td><%= flight.getOriginCity().getName() %></ion-td>
-                        <ion-td><%= flight.getDestinyCity().getName() %></ion-td>
-                        <ion-td><%= flight.getAirline().getCompany() %></ion-td>
-                        <ion-td><%= flight.getDepartureTime() %></ion-td>
-                        <ion-td><%= flight.getLandingTime() %></ion-td>
-                        <ion-td>$<%= flight.getPrice() %></ion-td>
-                    </ion-row>
-                    <% } %>
-                </ion-tbody>
-            </ion-table>
-        </ion-content>
-
-    
+		        
+	            <table>
+			        <thead>
+			            <tr>
+			                <th>Origen</th>
+			                <th>Destino</th>
+			                <th>Aerolínea</th>
+			                <th>Hora de Salida</th>
+			                <th>Hora de Llegada</th>
+			                <th>Precio</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <% for (FlightDTO flight : (ArrayList<FlightDTO>) request.getAttribute("flights")) { %>
+			            <tr>
+			                <td><%= flight.getOriginCity().getName() %></td>
+			                <td><%= flight.getDestinyCity().getName() %></td>
+			                <td><%= flight.getAirline().getCompany() %></td>
+			                <td><%= flight.getDepartureTime() %></td>
+			                <td><%= flight.getLandingTime() %></td>
+			                <td>$<%= flight.getPrice() %></td>
+			            </tr>
+			            <% } %>
+			        </tbody>
+			    </table>
+			</ion-card-content>
+        </ion-card>
+    </ion-col>
+</ion-row>
 </body>
 </html>
