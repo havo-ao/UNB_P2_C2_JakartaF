@@ -15,13 +15,13 @@
                     <ion-card-content>
                         <ion-grid>
                             <ion-row>
-                                <ion-col size-xs="4" size-lg="3">
+                                <ion-col size-xs="12" size-lg="3">
                                     <div class="airline-logo-container">
                                         <img class="airline-logo" alt="<%= flight.getAirline().getCompany() %>"
                                             src="./img/<%= flight.getAirline().getLogo() %>" />
                                     </div>
                                 </ion-col>
-                                <ion-col size-xs="8" size-lg="9">
+                                <ion-col size-xs="12" size-lg="9">
                                     <ion-grid>
                                         <ion-row>
                                             <ion-col size-xs="12" size-lg="8">

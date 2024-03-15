@@ -40,7 +40,6 @@ public class FlightDTO {
 	public FlightDTO(String id, String number, City originCity, City destinyCity, String airlineFlightId,
 			String availableSeats, String price, String date, String time, String departureTime, String landingTime,
 			ArrayList<Service> services, Aircraft aircraft, Airline airline) {
-		super();
 		this.id = id;
 		this.number = number;
 		this.originCity = originCity;

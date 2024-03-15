@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import co.edu.unbosque.model.daos.FlightDAOImpl;
 import co.edu.unbosque.model.dataMappers.FlightDataMapper;
 import co.edu.unbosque.model.dataMappers.FlightSearchMapper;
+import co.edu.unbosque.model.dataSource.DataSource;
 import co.edu.unbosque.model.dtos.FlightDTO;
 import co.edu.unbosque.model.dtos.FlightSearchDTO;
+import co.edu.unbosque.model.entities.Booking;
 import co.edu.unbosque.model.entities.Flight;
 
 public class FlightController {
@@ -25,15 +27,27 @@ public class FlightController {
 	}
 	
 	public ArrayList<FlightDTO> getAllFlights() {
-		ArrayList<FlightDTO> FlightsDTO = new ArrayList<>();
-		
-		ArrayList<Flight> Flights = flightDAO.findAll();
+	    ArrayList<FlightDTO> flightsDTO = new ArrayList<>();
+	    
+	    ArrayList<Flight> flights = flightDAO.findAll();
 
-	    for (Flight flight : Flights) {
-	        FlightsDTO.add(FlightDataMapper.entityToDTO(flight));
+	    for (Flight flight : flights) {
+	        int availableSeats = flight.getAvailableSeats();
+	        String flightId = flight.getId();
+	        
+	        for (Booking booking : DataSource.bookings) {
+	            if (booking.getFlightId().equals(flightId)) {
+	                availableSeats -= booking.getSeats();
+	            }
+	        }
+	        
+	        FlightDTO flightDTO = FlightDataMapper.entityToDTO(flight);
+	        flightDTO.setAvailableSeats(String.valueOf(availableSeats));
+	        
+	        flightsDTO.add(flightDTO);
 	    }
 
-		return FlightsDTO;
+	    return flightsDTO;
 	}
 
 }

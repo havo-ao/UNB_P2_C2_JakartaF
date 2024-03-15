@@ -18,7 +18,7 @@
 
     <body>
         <ion-app>
-            <ion-menu content-id="main-content">
+            <ion-menu content-id="main-content" swipeGesture="false">
                 <ion-header>
                     <ion-toolbar>
                         <ion-title>Servicios</ion-title>
@@ -50,16 +50,16 @@
 
                     <ion-list lines="full" class="main-menu">
                         <ion-label color="medium">Administradores</ion-label>
-                        <a href="index.jsp?page=create-flight" class="ion-item-link">
+                        <a href="bookings" class="ion-item-link">
                             <ion-item>
                                 <ion-icon name="airplane-outline"></ion-icon>
-                                <ion-label>Crear Vuelo</ion-label>
+                                <ion-label>Reservas</ion-label>
                             </ion-item>
                         </a>
                         <a href="flights" class="ion-item-link">
                             <ion-item>
                                 <ion-icon name="document-text-outline"></ion-icon>
-                                <ion-label>Consultar Vuelos</ion-label>
+                                <ion-label>Vuelos</ion-label>
                             </ion-item>
                         </a>
                     </ion-list>
@@ -100,6 +100,10 @@
 		                            %>
 		                            <%@include file="booking.jsp" %>
 		                            <%
+		                        } else if (pageParam.equals("bookings")) {
+		                            %>
+		                            <%@include file="bookings.jsp" %>
+		                            <%
 		                        }
 		                    } else {
 		                    	%>
@@ -115,6 +119,15 @@
             </div>
         </ion-app>
         <script>
+		  document.addEventListener('ionMenuWillOpen', (event) => {
+		    const menu = document.querySelector('ion-menu');
+		    if (menu) {
+		      menu.swipeGesture = false;
+		    }
+		  });
+		</script>
+		        
+        <script>
             const ionMenu = document.querySelector('ion-menu');
             const mainContent = document.getElementById('main-content');
 
@@ -124,6 +137,8 @@
                     mainContent.style.width = '100%';
                     mainContent.style.transform = 'translateX(0)';
                     ionMenu.style.boxShadow = 'unset';
+                } else {
+                	ionMenu.close();
                 }
             }
 
@@ -137,6 +152,8 @@
                     setTimeout(function () {
                         ionMenu.style.boxShadow = 'rgba(0, 0, 0, 0.18) 4px 0px 16px';
                     }, 240);
+                } else {
+                	ionMenu.open();
                 }
             }
 

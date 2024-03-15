@@ -36,5 +36,18 @@ public class BookingDAOImpl implements BookingDAO {
     public void deleteById(String id) {
         DataSource.bookings.removeIf(booking -> booking.getId().equals(id));
     }
+
+	@Override
+	public void cancelBooking(String id) {
+		Booking bookingToCancel = DataSource.bookings.stream()
+                .filter(booking -> booking.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+		
+		bookingToCancel.setCanceled(true);
+		
+		update(bookingToCancel);
+		
+	}
 }
 

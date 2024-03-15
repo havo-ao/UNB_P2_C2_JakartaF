@@ -10,4 +10,5 @@ public interface BookingDAO {
     void save(Booking booking);
     void update(Booking booking);
     void deleteById(String id);
+    void cancelBooking(String id);
 }

@@ -11,6 +11,10 @@ html {
   --overflow: scroll !important;
 }
 
+ion-menu {
+  touch-action: none;
+}
+
 .ion-item-link {
   text-decoration: none;
 }
@@ -80,9 +84,17 @@ html {
   width: 100%;
 }
 
+.extend-card {
+	max-width: unset;
+}
+
 .template-results {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.flights-card-container {
+	top: -3px;
 }
 
 .template-card ion-card-content {
@@ -164,6 +176,10 @@ html {
   display: flex;
 }
 
+.text-center {
+	text-align: center;
+}
+
 .price-details {
   display: flex;
   flex-direction: column;
@@ -173,6 +189,10 @@ html {
 
 .airline-logo {
   max-height: 100px;
+}
+
+.airline-list-logo {
+	max-height: 50px;
 }
 
 .airline-logo-container {
@@ -187,6 +207,38 @@ html {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 15px;
+}
+
+.flights-container {
+	width: 100%;
+	overflow-x: scroll;
+}
+
+.cancel-message {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+@media ( max-width : 768px) {
+	.col-origin {
+		order: 1;
+	}
+	
+	.col-date {
+		order: 4;
+	}
+	
+	.col-destiny {
+		order: 2;
+	}
+	
+	.col-seats {
+		order: 3;
+	}
 }
 
 @media (min-width: 769px) {

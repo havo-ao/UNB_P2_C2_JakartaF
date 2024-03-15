@@ -27,18 +27,18 @@ public class DataSource {
 		LocalDate fourDaysLater = today.plusDays(4);
 
 		String[][] flightInfo = {
-				{ "BOG", "ADZ", "2h 30m", "09:00", "11:30", "250000", "180", threeDaysLater.toString() },
+				{ "BOG", "ADZ", "2h 30m", "09:00", "11:30", "300000", "180", threeDaysLater.toString() },
 				{ "BOG", "MDE", "1h 10m", "09:00", "10:10", "250000", "180", threeDaysLater.toString() },
-				{ "BOG", "GIG", "6h 20m", "13:45", "20:05", "300000", "200", threeDaysLater.toString() },
-				{ "MDE", "DXB", "14h 15m", "10:30", "00:45", "700000", "220", threeDaysLater.toString() },
-				{ "MDE", "EZE", "6h 45m", "14:00", "20:45", "600000", "190", threeDaysLater.toString() },
-				{ "MDE", "GIG", "6h 30m", "13:20", "19:50", "300000", "180", threeDaysLater.toString() },
-				{ "EZE", "LHR", "12h 20m", "16:20", "04:40", "900000", "230", fourDaysLater.toString() },
-				{ "EZE", "MAD", "10h 30m", "18:00", "04:30", "750000", "210", fourDaysLater.toString() },
-				{ "EZE", "LON", "9h 15m", "20:00", "05:15", "1000000", "240", fourDaysLater.toString() },
-				{ "GIG", "IST", "12h 15m", "15:15", "03:30", "800000", "200", fourDaysLater.toString() },
-				{ "GIG", "MAD", "9h 40m", "16:30", "02:10", "700000", "190", fourDaysLater.toString() },
-				{ "GIG", "LON", "11h 20m", "17:00", "04:20", "750000", "210", fourDaysLater.toString() } };
+				{ "BOG", "GIG", "6h 20m", "13:45", "20:05", "1900000", "200", threeDaysLater.toString() },
+				{ "MDE", "DXB", "14h 15m", "10:30", "00:45", "5200000", "220", threeDaysLater.toString() },
+				{ "MDE", "EZE", "6h 45m", "14:00", "20:45", "1600000", "190", threeDaysLater.toString() },
+				{ "MDE", "GIG", "6h 30m", "13:20", "19:50", "1300000", "180", threeDaysLater.toString() },
+				{ "EZE", "LHR", "12h 20m", "16:20", "04:40", "4000000", "230", fourDaysLater.toString() },
+				{ "EZE", "MAD", "10h 30m", "18:00", "04:30", "1750000", "210", fourDaysLater.toString() },
+				{ "EZE", "LHR", "9h 15m", "20:00", "05:15", "3000000", "240", fourDaysLater.toString() },
+				{ "GIG", "IST", "12h 15m", "15:15", "03:30", "2300000", "200", fourDaysLater.toString() },
+				{ "GIG", "MAD", "9h 40m", "16:30", "02:10", "1100000", "190", fourDaysLater.toString() },
+				{ "GIG", "LHR", "11h 20m", "17:00", "04:20", "2750000", "210", fourDaysLater.toString() } };
 
 		int flightIndex = 1;
 		for (String[] flight : flightInfo) {
@@ -69,10 +69,10 @@ public class DataSource {
 				{ "MDE", "Medellín", "Aeropuerto Internacional José María Córdova" },
 				{ "DXB", "Dubái", "Aeropuerto Internacional de Dubái" },
 				{ "IST", "Estambul", "Aeropuerto Internacional de Estambul" },
-				{ "GIG", "Río de Janeiro", "Rio de Janeiro-Galeão International Airport" },
+				{ "GIG", "Río de Janeiro", "Galeão International Airport" },
 				{ "JFK", "Nueva York", "John F. Kennedy International Airport" },
 				{ "MAD", "Madrid", "Adolfo Suárez Madrid-Barajas Airport" },
-				{ "EZE", "Buenos Aires", "Ministro Pistarini International Airport" },
+				{ "EZE", "Buenos Aires", "Ezeiza - Ministro Pistarini International Airport" },
 				{ "LHR", "Londres", "Heathrow Airport" } };
 
 		for (String[] city : cityInfo) {

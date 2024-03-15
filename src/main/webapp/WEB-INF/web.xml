@@ -18,6 +18,12 @@
         <servlet-name>BookingServlet</servlet-name>
         <servlet-class>co.edu.unbosque.controller.BookingServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>BookingsServlet</servlet-name>
+        <servlet-class>co.edu.unbosque.controller.BookingsServlet</servlet-class>
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>FlightSearchServlet</servlet-name>
@@ -27,6 +33,11 @@
     <servlet-mapping>
         <servlet-name>BookingServlet</servlet-name>
         <url-pattern>/booking</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>BookingsServlet</servlet-name>
+        <url-pattern>/bookings</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>

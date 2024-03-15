@@ -14,20 +14,17 @@
             <ion-card-header>
                 <ion-card-title>Buscar Tiquete</ion-card-title>
             </ion-card-header>
-            <ion-card-content>
-                <ion-item>
+            <ion-card-content >
+                <ion-item style="margin-bottom: 10px">
 			        <ion-input id="bookingId" label="Ingresar Numero de Reserva" label-placement="floating" type="text"></ion-input>
 			      </ion-item>
+			      <div style="padding: 20px; width: 100%; text-align: center">
+				      <ion-button fill="outline" color="primary" onclick="consultarReserva()">
+	                   	<ion-icon slot="start" name="arrow-forward-circle-outline"></ion-icon>
+	                   	Consultar
+	                	</ion-button>
+               	  </div>
 			</ion-card-content>
-			<ion-footer>
-			  <ion-toolbar>
-			    <ion-button fill="outline" color="primary" onclick="consultarReserva()">
-                    	<ion-icon slot="start"
-                        name="arrow-forward-circle-outline"></ion-icon>
-                    	Consultar
-                	</ion-button>
-			  </ion-toolbar>
-			</ion-footer>
         </ion-card>
     </ion-col>
 </ion-row>

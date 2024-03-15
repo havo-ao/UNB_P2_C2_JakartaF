@@ -25,7 +25,8 @@
             <ion-card-content>
                 <ion-grid>
 				    <ion-row>
-				        <ion-col size-xs="12" size-lg="7">
+				    
+				        <ion-col class="col-origin" size-xs="12" size-lg="7">
 				            <div class="input-container">
 				                <ion-icon name="location-outline"></ion-icon>
 				                <ion-select aria-label="Origin" label-placement="floating"
@@ -39,11 +40,11 @@
 				                </ion-select>
 				            </div>
 				        </ion-col>
-				        <ion-col size-xs="12" size-lg="5">
+				        
+				        <ion-col class="col-date" size-xs="12" size-lg="5">
 				            <ion-label class="label-date" position="floating">Fecha de
 				                Viaje</ion-label>
-				            <ion-datetime-button datetime="datetime" displayFormat="DD-MM-YYYY"
-				                displayFormat="DD-MM-YYYY">
+				            <ion-datetime-button datetime="datetime" displayFormat="DD-MM-YYYY">
 				            </ion-datetime-button>
 				
 				            <ion-modal>
@@ -52,7 +53,8 @@
 				            </ion-modal>
 				
 				        </ion-col>
-				        <ion-col size-xs="12" size-lg="7">
+				        
+				        <ion-col class="col-destiny"  size-xs="12" size-lg="7">
 				            <div class="input-container">
 				                <ion-icon name="airplane-outline"></ion-icon>
 				                <ion-select aria-label="Destino" label-placement="floating"
@@ -66,8 +68,9 @@
 				                </ion-select>
 				            </div>
 				        </ion-col>
-				        <ion-col size-xs="12" size-lg="5">
-				            <ion-input label-placement="floating" fill="outline"
+				        
+				        <ion-col class="col-seats" size-xs="12" size-lg="5">
+				            <ion-input onkeypress="return isNumberKey(event)" label-placement="floating" fill="outline"
 				                label="Pasajeros" id="numberOfPassengers"></ion-input>
 				        </ion-col>
 				    </ion-row>
@@ -81,10 +84,7 @@
 				            </ion-button>
 				        </ion-col>
 				    </ion-row>
-				</ion-grid>
-				
-				
-				                
+				</ion-grid>        
 
             </ion-card-content>
         </ion-card>
@@ -92,6 +92,26 @@
 </ion-row>
 
 <script>
+
+	document.addEventListener('DOMContentLoaded', function() {
+	    var datetimePicker = document.getElementById('datetime');
+	    
+	    var today = new Date();
+	    
+	    today.setDate(today.getDate() - 1);
+	    
+	    var formattedToday = today.toISOString().split('T')[0];
+	    
+	    datetimePicker.min = formattedToday;
+	});
+	
+	function isNumberKey(evt) {
+	    let charCode = (evt.which) ? evt.which : evt.keyCode;
+	    if (charCode > 31 && (charCode < 48 || charCode > 57))
+	        return false;
+	    return true;
+	}
+	
    function buscarVuelos() {
        var origin = document.getElementById('originSelect').value;
        var destiny = document.getElementById('destinySelect').value;
@@ -101,6 +121,11 @@
            alert("Por favor seleccione la fecha.");
            return;
        }
+
+       if (origin === destiny) {
+         alert('Los lugares de origen y destino deben ser diferentes. Por favor, seleccione diferentes ciudades.');
+         return;
+       } 
        
        var date = rawDate.split('T')[0];
        var parts = date.split('-');
